@@ -1,0 +1,70 @@
+{
+  "name": "genpark-personal-agent-smart-commute-multimodal-transit-router-skill",
+  "title": "Smart Commute Multimodal Transit & Delay Contingency Router Skill",
+  "version": "1.0.0",
+  "description": "Daily urban commute planner, subway delay contingency routing, micro-mobility (e-scooter/bike) integration, rideshare surge pricing bypass, and weather-aware departure advisor for personal daily agents. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "organization": {
+    "name": "GenPark Inc.",
+    "url": "https://www.genpark.ai",
+    "linkedin": "https://www.linkedin.com/company/92955550"
+  },
+  "mcp_version": "2024-11-05",
+  "category": "personal-agent",
+  "tools": [
+    {
+      "name": "calculate_optimal_commute_route",
+      "description": "Synthesize fastest and most reliable multimodal route comparing subway, express bus, bike-share, and rideshare with real-time transit disruption status.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "origin_zone": {
+            "type": "string"
+          },
+          "destination_zone": {
+            "type": "string"
+          },
+          "transit_incident_reported": {
+            "type": "boolean"
+          },
+          "rain_precipitation_pct": {
+            "type": "integer"
+          },
+          "target_arrival_time_iso": {
+            "type": "string",
+            "description": "HH:MM"
+          }
+        },
+        "required": [
+          "origin_zone",
+          "destination_zone",
+          "target_arrival_time_iso"
+        ]
+      }
+    },
+    {
+      "name": "evaluate_rideshare_surge_bypass",
+      "description": "Calculate monetary savings by walking 300 meters outside airport/stadium dynamic surge pricing polygon.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "current_surge_multiplier": {
+            "type": "number",
+            "description": "e.g. 2.4 for 2.4x surge"
+          },
+          "base_trip_cost_usd": {
+            "type": "number"
+          },
+          "walking_minutes_to_perimeter": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "current_surge_multiplier",
+          "base_trip_cost_usd",
+          "walking_minutes_to_perimeter"
+        ]
+      }
+    }
+  ]
+}
